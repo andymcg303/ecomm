@@ -3,5 +3,10 @@
     "email": "jingo@teat.com",
     "password": "pass",
     "id": "19995f95"
+  },
+  {
+    "email": "andy@andy.com",
+    "password": "password",
+    "id": "bf9be2dd"
   }
 ]

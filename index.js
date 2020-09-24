@@ -52,6 +52,36 @@ app.get('/signout', (req, res) => {
     res.send('You have logged out');
 })
 
+app.get('/signin', (req, res) => {
+    res.send(`
+    <div>
+        <form method="POST">
+            <input name="email" placeholder="email">
+            <input name="password" placeholder="password">
+            <button>Sign In</button>
+        </form>
+    </div>
+    `);
+})
+
+app.post('/signin', async (req, res) => {
+    const { email, password } = req.body;
+
+    const user = await usersRepo.getOneBy({ email });
+    if (!user) {
+        return res.send('User not found');   
+    }
+
+    if (password !== user.password) {
+        return res.send('Password is incorrect');
+    }
+
+    req.session.userId = user.id;
+
+    res.send(`You are logged in as ${req.session.userId}`);
+
+})
+
 app.listen(3000, () => {
     console.log('Listening');
 })
