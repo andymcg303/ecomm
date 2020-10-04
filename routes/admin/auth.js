@@ -5,14 +5,17 @@ const signupTemplate = require('../../views/admin/auth/signup');
 const signinTemplate = require('../../views/admin/auth/signin');
 const { requireEmail,
         requirePassword,
-        requirePasswordConfirmation } = require('./validators');
+        requirePasswordConfirmation,
+        requireSigninEmail,
+        requireSigninPassword } = require('./validators');
 const router = express.Router();
 
 router.get('/signup', (req, res) => {
     res.send(signupTemplate({ req }));
 });
 
-router.post('/signup', [
+router.post('/signup', 
+    [
         requireEmail,
         requirePassword,
         requirePasswordConfirmation
@@ -44,22 +47,20 @@ router.get('/signin', (req, res) => {
     res.send(signinTemplate());
 });
 
-router.post('/signin',
+router.post('/signin', 
+    [
+        requireSigninEmail,
+        requireSigninPassword
+    ],
     async (req, res) => {
 
         const errors = validationResult(req);
 
-        const { email, password } = req.body;
+        console.log(errors);
+
+        const { email } = req.body;
 
         const user = await usersRepo.getOneBy({ email });
-        if (!user) {
-            return res.send('User not found');   
-        }
-
-        const isValidPassword = await usersRepo.comparePasswords(user.password, password); 
-        if (!isValidPassword) {
-            return res.send('Password is incorrect');
-        }
 
         req.session.userId = user.id;
 
