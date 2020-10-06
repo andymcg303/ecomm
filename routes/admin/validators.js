@@ -25,7 +25,7 @@ module.exports = {
             if (passwordConfirmation !== req.body.password) {
                 throw new Error('Passwords must match');
             }
-            // return true; ??       
+            return true;       
         }),
     requireSigninEmail: check('email')
         .trim()
