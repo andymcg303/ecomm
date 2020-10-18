@@ -6,6 +6,7 @@ const { handleErrors,
 const productsRepo = require('../../repositories/products');
 const productsNewTemplate = require('../../views/admin/products/new');
 const productsIndexTemplate = require('../../views/admin/products/index');
+const productsEditTemplate = require('../../views/admin/products/edit');
 const { requireTitle,
         requirePrice } = require('./validators');
 
@@ -37,5 +38,16 @@ router.post('/admin/products/new',
 
     }
 );
+
+router.get('/admin/products/:id/edit', requireAuth, async (req, res) => {
+    const product = await productsRepo.getOneBy(req.params.id);
+    
+    if (!product) {
+        return res.send('Product not fount');
+    }
+
+    res.send(productsEditTemplate({ product }));
+
+})
 
 module.exports = router;
