@@ -26,7 +26,7 @@ router.post('/signup',
         // Store the id of the user inside the users cookie
         req.session.userId = user.id;
 
-        res.send('Account created for user ' + req.session.userId);
+        res.redirect('/admin/products');
     }
 );
 
@@ -50,7 +50,7 @@ router.post('/signin',
 
         req.session.userId = user.id;
 
-        res.send(`You are logged in as ${req.session.userId}`);
+        res.redirect('/admin/products');
 
     }
 );
