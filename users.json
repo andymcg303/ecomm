@@ -28,5 +28,10 @@
     "email": "test01@test.com",
     "password": "2d94ca1945155ddf7db826a266b7053fdfdbb079425520370f4ae30b36fb3882189e48d9743473f5ab3e39eda712b82a211133967251310164a16f7799c34a58.87e668baa9fcb4bf",
     "id": "6460fd46"
+  },
+  {
+    "email": "yang@ying.com",
+    "password": "0894acb0bb61487b728fcf0d4a27f76a83b842fda749c013bd472a648d183f513f61196c52e9b214fbe8b15717550ee99b71068568de70aee8181c80dbbadf8c.033a669cfb7360b2",
+    "id": "1e34e3c1"
   }
 ]
